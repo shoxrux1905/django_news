@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+{% block content %}
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Kun.uz - {{ news.title }}</title>
+      <style>
+      body {
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #f2f2f2;
+        color: #222;
+        max-width: 900px;
+        margin: auto;
+        padding: 2rem;
+      }
+      
+      .news-container {
+        background-color: white;
+        border-radius: 8px;
+        padding: 2rem;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+      }
+      
+      .news-container img {
+        width: 100%;
+        height: auto;
+        margin-bottom: 1.5rem;
+        border-radius: 6px;
+      }
+      
+      .news-container h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: #0d6efd;
+      }
+      
+      .news-container p {
+        font-size: 1.1rem;
+        line-height: 1.7;
+      }
+      
+      .back-btn {
+        margin-top: 2rem;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        background-color: #0d6efd;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      
+      .back-btn:hover {
+        background-color: #0b5ed7;
+      }
+      
+      footer {
+        background-color: #1a1a1a;
+        color: white;
+        text-align: center;
+        padding: 1rem;
+        margin-top: 3rem; /* Shu qator uni pastga suradi */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="news-container">
+      <h1>{{ news.title }}</h1>
+      <h3>Category : {{ news.category }}</h3>
+      <img src="{{ news.image.url }}" alt="" />
+      <p>{{ news.content }}</p>
+
+      <a href="{% url 'home' %}" class="back-btn">Ortga</a>
+
+      
+    </div>
+  </body>
+</html>
+
+{% endblock content %}
