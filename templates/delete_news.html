@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div style="max-width: 600px; margin: 50px auto; padding: 2rem; background-color: white; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); font-family: 'Segoe UI', sans-serif;">
+
+  <h2 style="color: #dc3545;">❗ Rostdan ham ushbu yangilikni o‘chirmoqchimisiz?</h2>
+
+  <p><strong>Sarlavha:</strong> {{ news.title }}</p>
+  <p><strong>Kategoriya:</strong> {{ news.category.name }}</p>
+  <p><strong>Matn (qisqargan):</strong> {{ news.content|truncatechars:100 }}</p>
+
+  {% if news.image %}
+    <img src="{{ news.image.url }}" alt="Rasm" style="max-width: 100%; margin-top: 1rem; border-radius: 6px;">
+  {% endif %}
+
+  <form method="post" style="margin-top: 2rem;">
+    {% csrf_token %}
+    <button type="submit" style="background-color: #dc3545; color: white; padding: 0.7rem 1.5rem; border: none; border-radius: 6px;">🗑️ Ha, o‘chir</button>
+    <a href="{% url 'detail' news.id %}" style="margin-left: 10px; text-decoration: none; padding: 0.7rem 1.5rem; background-color: #6c757d; color: white; border-radius: 6px;">Bekor qilish</a>
+  </form>
+
+</div>
+
+{% endblock %}

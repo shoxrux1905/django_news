@@ -139,6 +139,12 @@
         {% endfor %}
     </header>
 
+    <header>
+        <div class="logo">Kun.uz</div>
+        <a href="/add/" class="btn-add-news">📰 Yangilik qo‘shish</a>
+    </header>
+
+
 
     {% if datas %}
     <section class="hero">
@@ -148,18 +154,22 @@
 
     <section class="news-section">
 
-        {% for data in datas %}
+    {% for data in datas %}
         <div class="news-card">
-            <img src="{{ data.image.url }}" alt="News">
-            <div class="news-card-content">
-                <h3>{{ data.title }}</h3>
-                <p>{{ data.content }}</p>
+        {% if data.image %}
+            <img src="{{ data.image.url }}" alt="news"/>
+        {% else %}
+            <img src="" alt="no image"/>
+        {% endif %}
+        <div class="news-card-content">
+            <h3>{{ data.title }}</h3>
+            <p>{{ data.content }}</p>
 
-                <!-- Batafsil tugmasi -->
-                <a href="{% url 'detail' data.id %}" class="btn btn-primary">Batafsil</a>
-            </div>
+        <a href="{% url 'detail' data.id %}" class="btn btn-primary">Batafsil</a>
         </div>
-        {% endfor %}
+        </div>
+    {% endfor %}
+
 
         {% endif %}
 

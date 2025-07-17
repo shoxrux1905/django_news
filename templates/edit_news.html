@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1 style="text-align: center; color: #0d6efd;">Yangilikni Tahrirlash</h1>
+
+<form method="POST" enctype="multipart/form-data" style="max-width: 600px; margin: auto; background: white; padding: 1.5rem 2rem; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+  {% csrf_token %}
+
+  <!-- Sarlavha -->
+  <input type="text" name="title" value="{{ news.title }}" placeholder="Yangilik sarlavhasi" required />
+
+  <!-- Kategoriya -->
+  <select name="category" required>
+    {% for cat in categories %}
+      <option value="{{ cat.id }}" {% if cat.id == news.category.id %}selected{% endif %}>{{ cat.name }}</option>
+    {% endfor %}
+  </select>
+
+  <!-- Rasm -->
+  <p>Joriy rasm:</p>
+  {% if news.image %}
+    <img src="{{ news.image.url }}" alt="Rasm" style="max-width: 100%; height: auto; margin-bottom: 1rem;">
+  {% endif %}
+  <input type="file" name="image" accept="image/*" />
+
+  <!-- Matn -->
+  <textarea name="content" rows="5" required>{{ news.content }}</textarea>
+
+  <!-- Tugmalar -->
+  <button type="submit">💾 Saqlash</button>
+  <a href="{% url 'delete_news' news.id %}" class="btn btn-danger" style="margin-left: 10px; background-color: #dc3545; color: white; padding: 0.5rem 1rem; border-radius: 5px; text-decoration: none;">🗑️ O‘chirish</a>
+
+</form>
+
+{% endblock %}
